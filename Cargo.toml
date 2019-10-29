@@ -1,0 +1,20 @@
+[package]
+name = "cs704-ui"
+version = "0.1.0"
+authors = ["ryan kurte <ryan@kurte.nz>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+serde = { versio = "1.0.102", features = ["derive"] }
+serde_json = "1.0.41"
+structopt = "0.3.3"
+serial = "0.4.0"
+log = "0.4.8"
+simplelog = "0.7.4"
+
+
+[[bin]]
+name = "sc704-ui"
+path = "src/main.rs"
