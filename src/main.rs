@@ -11,11 +11,11 @@ use cs704_ui::*;
 
 #[derive(Clone, Debug, PartialEq, StructOpt)]
 pub struct Options {
-    #[structopt(short = "p", long = "serial.port", default_value = "/dev/serial0", env = "GPS_PORT")]
+    #[structopt(short = "p", long = "port", default_value = "/dev/serial0")]
     /// Serial port for receiving NMEA data
     pub serial_port: String,
 
-    #[structopt(short = "b", long = "serial.baud", default_value = "115200", env = "GPS_BAUD")]
+    #[structopt(short = "b", long = "baud", default_value = "115200")]
     /// Client ID for MQTT connection
     pub baud: usize,
 
@@ -47,8 +47,11 @@ fn main() {
     debug!("Opening serial port ({}, {} baud)", opts.serial_port, opts.baud);
     let mut c = Connector::new(&opts.serial_port, opts.baud).unwrap();
 
+    debug!("Connected to serial port");
+
     // Send init command if set
     if let Some(command) = &opts.init_command {
+        debug!("Sending command: {}", command);
         c.write(command).unwrap();
     }
 

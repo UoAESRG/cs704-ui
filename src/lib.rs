@@ -88,8 +88,8 @@ impl Connector {
         match serde_json::from_str(&s) {
             Ok(v) => return Ok(Some(v)),
             Err(e) => {
-                warn!("Error decoding line: {:?}", e);
-                warn!("{}", s);
+                debug!("Error decoding line: {:?}", e);
+                debug!("{}", s);
                 return Ok(None)
             }
         }
